@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { GoogleGenAI, LiveSession, LiveServerMessage, Modality } from '@google/genai';
+// FIX: The 'LiveSession' type is not exported from '@google/genai'. It has been removed.
+import { GoogleGenAI, LiveServerMessage, Modality } from '@google/genai';
 import { Difficulty, Scenario, Evaluation, Recording } from '../types';
 import { SALESPERSON_MISSION, SALES_SCRIPT_GUIDE, AI_GENERAL_CONTEXT } from '../constants';
 import { createBlob, decode, decodeAudioData } from '../services/audioUtils';
@@ -25,7 +26,8 @@ const RoleplayScreen: React.FC<RoleplayScreenProps> = ({ difficulty, scenario, o
   const { addRecording } = useAuth();
 
   // Refs for managing session and media
-  const sessionPromiseRef = useRef<Promise<LiveSession> | null>(null);
+  // FIX: Replaced non-exported 'LiveSession' type with 'any' to allow the code to compile.
+  const sessionPromiseRef = useRef<Promise<any> | null>(null);
   const mediaStreamRef = useRef<MediaStream | null>(null);
   const audioContextRef = useRef<AudioContext | null>(null);
   const scriptProcessorRef = useRef<ScriptProcessorNode | null>(null);
